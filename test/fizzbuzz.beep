@@ -1,0 +1,35 @@
+import "core.console"; // namespace console inside core
+
+namespace main;  
+
+main : void : () {
+	
+	for i in i32 range 1 to 99 
+	{
+		div_by_three : i32 = 3 mod i is 0;
+		div_by_five  : i32 = 5 mod i is 0;
+
+		if div_by_three and div_by_five 
+		{
+			print("FizzBuzz");
+		} 
+		elseif div_by_three
+		{
+			print("Buzz");
+		} 
+		elseif div_by_five  
+		{
+			print("Buzz");
+		} 
+		else 
+		{
+			number : string = int_to_string(i);
+			print(number);
+		}
+	}
+}
+
+print : proc : (word: string) 
+{
+	console.write_line(word);
+}

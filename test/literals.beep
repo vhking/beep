@@ -1,0 +1,9 @@
+main : proc i32 : ()
+{
+	integer : i32    = 123123;
+	decimal : f32    = 123.123;
+	text    : string = "123123";
+	boolean : bool   = false;
+
+	return 0;
+}
