@@ -1,9 +1,9 @@
 @echo off
 
 
-IF NOT EXIST ..\build mkdir ..\build
-pushd ..\build
+IF NOT EXIST .\build mkdir .\build
+pushd .\build
 pushd build
 pwd
-cl -Zi C:\Users\gamer\Documents\GitHub\beep\beep\main.cpp
+cl -Zi w:\beep\main.cpp
 popd

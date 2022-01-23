@@ -1,0 +1,8 @@
+main : proc : () 
+{
+	integer    : i32  : 100;
+	float      : f32  : 10.0;
+	string     : str  : "Hello World";
+	charachter : chr  : 'c';
+	boolean    : bool : false;
+}

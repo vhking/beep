@@ -3,6 +3,8 @@
 #define STB_DS_IMPLEMENTATION
 #include "stb_ds.h"
 
+#define INCLUDE_STB_DS_H
+
 #define STBDS_REALLOC(context,ptr,size) better_realloc
 #define STBDS_FREE(context,ptr)         better_free
 // stb
@@ -14,12 +16,6 @@
 #include <algorithm>
 #include <string.h>
 // std
-
-#define global_variable static;
-
-#define INCLUDE_STB_DS_H
-
-#define CHUNK 1024 /* read 1024 bytes at a time */
 
 enum TokenTypes
 {
@@ -448,14 +444,13 @@ Token scan_tokens(char source[])
 
 int main(int argc, char *argv[]) 
 {
-	/*char *path = argv[1];
-	FILE* file = fopen(path, "rb");*/
-	char *path = "C:/Users/gamer/Documents/GitHub/beep/source/literals.beep\0";
-	FILE* file = fopen(path, "rb");
+	char *path = argv[1];
+    FILE* file = fopen(path, "rb");
+
 
 	if (file == NULL) {
 		fprintf(stderr, "Could not open file \"%s\".\n", path);
-		exit(74);
+		exit(74); // input/output error
 	}
 	
 	fseek(file, 0L, SEEK_END);     // Sets the position of the file to the given offset(SEEK_END)
@@ -465,17 +460,20 @@ int main(int argc, char *argv[])
 	char* source = (char*)malloc(fileSize + 1); // memmory allocate size of file + 1( 1 = sizeof(char). used for the null termination)  
 	if (source == NULL) {
 		fprintf(stderr, "Not enough memory to read \"%s\".\n", path);
-		exit(74);
+		exit(74); 
 	}
-	
-	size_t bytesRead = fread(source, sizeof(char), fileSize, file); // reads data from the given stream into the array(source)
+
+	size_t bytesRead = fread(source, sizeof(char), 1, file); // reads data from the given stream into the array(source)
 	if (bytesRead < fileSize) {
 		fprintf(stderr, "Could not read file \"%s\".\n", path);
 		exit(74);
 	}
+	
+	fwrite(source, sizeof(char), 1, stdout);
+
 	fclose(file); // closes the file stream. 
 	 
-	source[bytesRead] = '\0';  // adds the nukk termination
+	source[bytesRead] = '\0';  // adds the null termination
 	
 	Token tokens = scan_tokens(source);
 
