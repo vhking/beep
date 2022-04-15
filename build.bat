@@ -1,9 +1,12 @@
 @echo off
 
+set source=%cd%\main.cpp
 
-IF NOT EXIST .\build mkdir .\build
-pushd .\build
 pushd build
-pwd
-cl -Zi w:\beep\main.cpp
+
+
+cl %source% /link user32.lib
+
 popd
+
+copy build\main.exe main.exe
